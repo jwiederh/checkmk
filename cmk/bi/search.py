@@ -264,6 +264,8 @@ class BIHostSearch(ABCBISearch):
             }
             for idx, group in enumerate(search_match.match_groups):
                 search_result["$HOST_MG_%d$" % idx] = group
+            for l_key, l_value in (search_match.host.labels.items()):
+                search_result["$HOST_LABEL_%s" % l_key] = l_value
             search_results.append(search_result)
         return search_results
 
